@@ -1,4 +1,4 @@
-name: Rails Unit Tests
+name: Rails Tests && Rubocop
 
 on: [pull_request]
 
