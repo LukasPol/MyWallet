@@ -34,9 +34,8 @@ jobs:
           POSTGRES_PASSWORD: postgres
           RAILS_ENV: test
         run: |
-          bundle exec rails db:create
-          bundle exec rails db:migrate
-          bundle exec rake
+          bundle exec rails db:test:prepare
+          bundle exec rspec
       - name: Rubocop Check
         run: |
           bundle exec rubocop
