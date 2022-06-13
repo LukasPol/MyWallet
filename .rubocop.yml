@@ -53,6 +53,7 @@ Metrics/ParameterLists:
 Metrics/BlockLength:
   IgnoredMethods: [ 'describe', 'context', 'it' ]
   Max: 50
+  Exclude: [ 'config/**/**' ]
 
 Metrics/AbcSize:
   Max: 40
