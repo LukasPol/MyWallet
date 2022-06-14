@@ -5,7 +5,6 @@ class CreateWallets < ActiveRecord::Migration[7.0]
       t.references :user, null: false, foreign_key: true
       t.index [:name, :user_id], unique: true
 
-
       t.timestamps
     end
   end
