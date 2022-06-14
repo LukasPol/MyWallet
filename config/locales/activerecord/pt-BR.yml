@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+        user: 'Usuário'
+        wallet: 'Carteira'
+    attributes:
+      wallet:
+        name: 'Nome'
+        user: 'Usuário'
+    errors:
+      models:
+        wallet:
+          attributes:
+            name:
+              taken: 'já cadastrado'
