@@ -7,6 +7,7 @@ gem 'rails', '~> 7.0.3'
 
 gem 'bootsnap', require: false
 gem 'cssbundling-rails', '~> 1.1.0'
+gem 'devise', '~> 4.2'
 gem 'dotenv-rails', '~> 2.5'
 gem 'image_processing', '~> 1.12.2'
 gem 'jsbundling-rails', '~> 1.0.2'
