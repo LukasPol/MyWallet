@@ -1,4 +1,6 @@
 pt-BR:
+  name_app: "Minhas ações"
+
   are_you_sure: "Tem certeza?"
   created: "%{model} foi criado com sucesso."
   created_f: "%{model} foi criada com sucesso."
@@ -19,6 +21,10 @@ pt-BR:
   details: "Visualizar"
   edit: "Editar"
   show: "Visualizar"
+
+  navbar:
+    tradings: "Movimentações"
+    logout: 'Sair'
 
   date:
     abbr_day_names:
