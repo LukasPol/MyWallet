@@ -8,10 +8,7 @@
     <%= f.input :value, as: :float %>
     <%= f.input :amount, as: :integer %>
     <%= f.input :kind, as: :select, collection: kind_enum, selected: 0 %>
-    <%# f.input :stock %>
-    <%# f.association :user %>
-    <%# f.association :wallet %>
-    <%= f.association :stock, label_method: :code %>
+    <%= f.input :stock %>
   </div>
 
   <div class="form-actions mt-3">
