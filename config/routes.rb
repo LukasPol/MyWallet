@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
-  resources :tradings
-  root to: 'home#index'
-  get 'home/index'
+  unauthenticated :user do
+    root to: 'home#index', as: :unauthenticated_user_root
+  end
+
+  authenticated :user do
+    root to: 'tradings#index', as: :authenticated_user_root
+  end
+
   devise_for :users
+
+  get 'home/index'
+
+  resources :tradings
 end
