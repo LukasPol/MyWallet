@@ -4,10 +4,7 @@ class Trading
 
     def call
       @trading&.update(attributes)
-      unless @trading&.valid?
-        errors.add(:model, @trading&.errors)
-        @stock.destroy!
-      end
+      check_errors
 
       @trading
     end

@@ -13,8 +13,17 @@ class Trading
       @stock = Stock.find_or_create_by(code: params[:stock])
     end
 
+    private
+
     def attributes
       { date: @date, value: @value, amount: @amount, kind: @kind, user: @user, wallet: @wallet, stock: @stock }
+    end
+
+    def check_errors
+      return if @trading&.valid?
+
+      errors.add(:model, @trading&.errors)
+      @stock.destroy!
     end
   end
 end
