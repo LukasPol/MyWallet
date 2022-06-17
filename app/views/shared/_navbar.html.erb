@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg bg-white">
+  <div class="container-fluid px-0">
+    <a class="navbar-brand" href="#"><%= t(:name_app) %></a>
+    <% if current_user.present? %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to '/tradings', class: "nav-link" do %>
+              <%= t(:tradings, scope: 'navbar') %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, data: {"turbo-method": :delete, confirm: t(:are_you_sure)}, class: "nav-link" do %>
+              <%= t(:logout, scope: 'navbar') %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</nav>
