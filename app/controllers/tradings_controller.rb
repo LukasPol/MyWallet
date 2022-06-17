@@ -54,6 +54,6 @@ class TradingsController < ApplicationController
   def trading_params
     params.require(:trading)
           .permit(:date, :value, :amount, :kind, :user_id, :stock_id)
-          .merge(user_id: current_user.id, wallet: current_user.wallets.first)
+          .merge(user_id: current_user.id, wallet: current_user.main_wallet)
   end
 end

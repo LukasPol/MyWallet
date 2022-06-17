@@ -5,7 +5,7 @@ FactoryBot.define do
     amount { 1 }
     kind { 'buy' }
     user { create(:user) }
-    wallet { user.wallets.first }
+    wallet { user.main_wallet }
     stock { create(:stock) }
   end
 end
