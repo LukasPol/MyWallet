@@ -25,6 +25,7 @@ pt-BR:
   navbar:
     tradings: "Movimentações"
     logout: 'Sair'
+    login: 'Entrar'
 
   date:
     abbr_day_names:
