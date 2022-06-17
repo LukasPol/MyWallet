@@ -6,7 +6,7 @@ class Trading < ApplicationRecord
   enum kind: { buy: 0, hold: 1 }
 
   validates :value, :amount, :date, :kind, :user, :stock, :wallet, presence: true
-  validates :value, numericality: { greater_than: 0 }
+  validates :value, :amount, numericality: { greater_than: 0 }
 
   validate do
     errors.add(:date, I18n.t(:after_today, scope: 'activerecord.errors.models.trading.attributes.date')) if date && date > Time.zone.today
