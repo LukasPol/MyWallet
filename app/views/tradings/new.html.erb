@@ -1,9 +1,9 @@
-<h1>New trading</h1>
+<h1><%= t(:create_model ,model: t(:trading, scope: 'activerecord.models')) %></h1>
 
 <%= render "form", trading: @trading %>
 
 <br>
 
 <div>
-  <%= link_to "Back to tradings", tradings_path %>
+  <%= link_to t(:back), tradings_path %>
 </div>
