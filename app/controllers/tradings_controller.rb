@@ -19,9 +19,11 @@ class TradingsController < ApplicationController
 
   # POST /tradings
   def create
-    @trading = Trading.new(trading_params)
+    creator = Trading::Creator.call(trading_params)
+    @trading = creator.result
 
-    if @trading.save
+    if creator.success?
+      @trading.save
       redirect_to tradings_url, notice: t(:created_f, model: t(:trading, scope: 'activerecord.models'))
     else
       render :new, status: :unprocessable_entity
@@ -30,7 +32,10 @@ class TradingsController < ApplicationController
 
   # PATCH/PUT /tradings/1
   def update
-    if @trading.update(trading_params)
+    creator = Trading::Updater.call(trading_params, @trading)
+    @trading = creator.result
+
+    if creator.success?
       redirect_to tradings_url, notice: t(:updated_f, model: t(:trading, scope: 'activerecord.models'))
     else
       render :edit, status: :unprocessable_entity
@@ -53,7 +58,7 @@ class TradingsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def trading_params
     params.require(:trading)
-          .permit(:date, :value, :amount, :kind, :user_id, :stock_id)
-          .merge(user_id: current_user.id, wallet: current_user.main_wallet)
+          .permit(:date, :value, :amount, :kind, :stock)
+          .merge(user: current_user, wallet: current_user.main_wallet)
   end
 end
