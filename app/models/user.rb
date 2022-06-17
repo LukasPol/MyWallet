@@ -5,10 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :wallets, dependent: :delete_all
+  has_many :tradings, dependent: :delete_all
 
   validates :email, :password, :password_confirmation, presence: true
 
   after_create do
     Wallet.create(name: 'Principal', user_id: id)
+  end
+
+  def main_wallet
+    wallets.first
   end
 end

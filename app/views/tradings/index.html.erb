@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="d-flex align-items-center justify-content-between pe-4">
+  <h1><%= t(:trading_pluralize, scope: 'activerecord.models') %></h1>
+  <%= link_to t(:create_model ,model: t(:trading, scope: 'activerecord.models')), new_trading_path, class: 'btn btn-primary px-3 py-2' %>
+</div>
+
+
+<table class="table table-responsive table-striped table-hover" id="tradings">
+  <thead>
+    <tr>
+      <th scope="col"><%= Trading.human_attribute_name("stock") %></th>
+      <th scope="col"><%= Trading.human_attribute_name("value") %></th>
+      <th scope="col"><%= Trading.human_attribute_name("amount") %></th>
+      <th scope="col"><%= Trading.human_attribute_name("kind") %></th>
+      <th scope="col"><%= Trading.human_attribute_name("date") %></th>
+      <th scope="col" colspan="3">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tradings.each do |trading| %>
+      <tr>
+        <th><%= trading.stock.code %></th>
+        <th><%= number_to_currency(trading.value) %></th>
+        <th><%= trading.amount %></th>
+        <th><%= locale_kind(trading.kind) %></th>
+        <th><%= l(trading.date) %></th>
+<!--        <th>-->
+          <%#= link_to trading do %>
+<!--            <i class="bi bi-eye"></i>-->
+          <%# end %>
+<!--        </th>-->
+        <th>
+          <%= link_to edit_trading_path(trading) do %>
+            <i class="bi bi-pencil-square"></i>
+          <% end %>
+        </th>
+        <th>
+          <%= link_to trading_path(trading.id),data: {"turbo-method": :delete, confirm: t(:are_you_sure)}, title: t(:destroy) do %>
+            <i class="bi bi-trash"></i>
+          <% end %>
+        </th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

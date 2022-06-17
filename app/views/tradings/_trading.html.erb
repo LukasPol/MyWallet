@@ -1,0 +1,21 @@
+<div id="<%= dom_id trading %>">
+  <p>
+    <strong><%= Trading.human_attribute_name("date") %>:</strong>
+    <%= trading.date %>
+  </p>
+
+  <p>
+    <strong><%= Trading.human_attribute_name("value") %>:</strong>
+    <%= trading.value %>
+  </p>
+
+  <p>
+    <strong><%= Trading.human_attribute_name("amount") %>:</strong>
+    <%= trading.amount %>
+  </p>
+
+  <p>
+    <strong><%= Trading.human_attribute_name("stock") %>:</strong>
+    <%= trading.stock.code %>
+  </p>
+</div>

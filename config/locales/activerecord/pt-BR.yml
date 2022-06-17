@@ -3,13 +3,45 @@ pt-BR:
     models:
         user: 'Usuário'
         wallet: 'Carteira'
+        trading: 'Movimentação'
+        trading_pluralize: 'Movimentações'
     attributes:
       wallet:
         name: 'Nome'
         user: 'Usuário'
+      trading:
+        value: 'Valor'
+        date: 'Data'
+        amount: 'Quantidade'
+        kind: 'Tipo de movimentação'
+        kind_enum:
+          buy: 'Compra'
+          hold: 'Venda'
+        wallet: 'Carteira'
+        user: 'Usuário'
+        stock: 'Código da ação'
     errors:
       models:
         wallet:
           attributes:
             name:
               taken: 'já cadastrado'
+        trading:
+          attributes:
+            date:
+              after_today: 'não pode ser futuro'
+              blank: 'é obrigatória'
+            value:
+              blank: 'é obrigatório'
+              not_a_number: 'deve ser número'
+            amount:
+              blank: 'é obrigatória'
+            user:
+              required: 'é obrigatório'
+              blank: 'não pode ser vazio'
+            stock:
+              required: 'é obrigatório'
+              blank: 'não pode ser vazia'
+            wallet:
+              required: 'é obrigatório'
+              blank: 'não pode ser vazia'
