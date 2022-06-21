@@ -34,7 +34,7 @@
           <% end %>
         </th>
         <th>
-          <%= link_to trading_path(trading.id),data: {"turbo-method": :delete, confirm: t(:are_you_sure)}, title: t(:destroy) do %>
+          <%= link_to trading_path(trading.id),data: {"turbo-method": :delete, "turbo-confirm": t(:are_you_sure)}, title: t(:destroy) do %>
             <i class="bi bi-trash"></i>
           <% end %>
         </th>

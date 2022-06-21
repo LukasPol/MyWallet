@@ -1,0 +1,29 @@
+<div class="d-flex align-items-center justify-content-between pe-4">
+  <h1><%= t(:wallet, scope: 'activerecord.models').pluralize %></h1>
+</div>
+
+<table class="table table-responsive table-striped table-hover" id="tradings">
+  <thead>
+  <tr>
+    <th scope="col"><%= Trading.human_attribute_name("stock") %></th>
+    <th scope="col"><%= Trading.human_attribute_name("value") %></th>
+    <th scope="col"><%= Trading.human_attribute_name("amount") %></th>
+    <th scope="col" colspan="3">#</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @grouped_tradings.each do |group| %>
+      <tr>
+        <th><%= group[:stock] %></th>
+        <th><%= number_to_currency(group[:average_price]) %></th>
+        <th><%= group[:amount] %></th>
+        <th>
+          <%# link_to wallets_stock_tradings_path(group[:stock_id]), data: { turbo: true, "turbo-frame": 'remote_modal' } %>
+          <%= link_to '#', data: { turbo: true, "turbo-frame": 'remote_modal' } do %>
+            <i class="bi bi-eye-slash-fill"></i>
+          <% end %>
+        </th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

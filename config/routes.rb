@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    root to: 'tradings#index', as: :authenticated_user_root
+    root to: 'wallets#index', as: :authenticated_user_root
   end
 
   devise_for :users
@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   get 'home/index'
 
   resources :tradings
+  resources :wallets, only: [:index]
 end
