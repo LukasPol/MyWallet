@@ -26,7 +26,6 @@ class WalletsController < ApplicationController
   end
 
   def calculate_average_price(tradings)
-
     price = tradings.map do |t|
       t.amount * t.value
     end.sum
