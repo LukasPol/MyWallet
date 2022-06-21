@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   get 'home/index'
 
   resources :tradings
+  resources :wallets, only: [:index]
 end
