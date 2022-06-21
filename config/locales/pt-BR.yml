@@ -24,6 +24,7 @@ pt-BR:
 
   navbar:
     tradings: "Movimentações"
+    wallet: 'Minha carteira'
     logout: 'Sair'
     login: 'Entrar'
 
