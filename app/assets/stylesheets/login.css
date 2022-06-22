@@ -69,3 +69,26 @@ body {
   outline: none;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
 }
+
+.field_with_errors > input[type=text], .field_with_errors > input[type=email], .field_with_errors > input[type=password] {
+    display: block;
+    margin: 0;
+    padding: 0.5rem;
+    color: inherit;
+    width: 100%;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: inherit;
+    line-height: 1rem;
+    border: 2px solid red;
+    border-radius: 0.4rem;
+    transition: box-shadow 300ms;
+    background: url("https://e7.pngegg.com/pngimages/591/346/png-clipart-error-cross-red-cross-thumbnail.png") no-repeat scroll right;
+    background-size: 1.5rem;
+    background-position-x: calc(100% - 12px);
+}
+
+.field_with_errors > input:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+}
