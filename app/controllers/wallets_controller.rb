@@ -2,6 +2,8 @@ class WalletsController < ApplicationController
   before_action :set_wallet
 
   def index
+    @search = current_user.tradings.ransack(params[:q])
+    @tradings = @search.result.includes(:stock)
     @grouped_tradings = group_tradings
   end
 
@@ -12,7 +14,7 @@ class WalletsController < ApplicationController
   end
 
   def group_tradings
-    stocks_ids = @wallet.tradings.collect(&:stock_id).uniq
+    stocks_ids = @tradings.collect(&:stock_id).uniq
     stocks_ids.map do |id|
       tradings = @wallet.tradings.where(stock_id: id, kind: :buy)
       average_price = calculate_average_price(tradings)

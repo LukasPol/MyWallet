@@ -5,6 +5,7 @@ pt-BR:
         wallet: 'Carteira'
         trading: 'Movimentação'
         trading_pluralize: 'Movimentações'
+        stock: 'Ação'
     attributes:
       wallet:
         name: 'Nome'
@@ -20,6 +21,10 @@ pt-BR:
         wallet: 'Carteira'
         user: 'Usuário'
         stock: 'Código da ação'
+        stock_code: 'Código da ação'
+      stock:
+        code: 'Código'
+        name: 'Nome'
     errors:
       models:
         wallet:
