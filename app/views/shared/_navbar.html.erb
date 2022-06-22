@@ -4,9 +4,9 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    <% if current_user.present? %>
-      <div class="collapse navbar-collapse" id="navbarText">
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+          <% if current_user.present? %>
           <li class="nav-item">
             <%= link_to wallets_path, class: "nav-link #{active_when(['wallets'])}" do %>
               <%= t(:wallet, scope: 'navbar') %>
@@ -22,18 +22,18 @@
               <%= t(:logout, scope: 'navbar') %>
             <% end %>
           </li>
-        </ul>
-      </div>
-    <% else %>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav ms-auto">
+        <% else %>
           <li class="nav-item">
             <%= link_to new_user_session_path, class: "nav-link active" do %>
               <%= t(:login, scope: 'navbar') %>
             <% end %>
           </li>
+        <% end %>
+        </ul>
+
+        <ul class="navbar-nav ms-auto">
+
         </ul>
       </div>
-    <% end %>
   </div>
 </nav>
