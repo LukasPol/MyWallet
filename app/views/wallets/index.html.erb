@@ -2,10 +2,22 @@
   <h1><%= t(:wallet, scope: 'activerecord.models').pluralize %></h1>
 </div>
 
+<%= search_form_for @search, url: wallets_path do |f| %>
+  <div class="row mt-2 mb-3">
+    <div class="col">
+      <%= f.search_field :stock_code_cont, class: 'form-control', placeholder: Trading.human_attribute_name("stock") %>
+    </div>
+
+    <div class="col">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
 <table class="table table-responsive table-striped table-hover" id="tradings">
   <thead>
   <tr>
-    <th scope="col"><%= Trading.human_attribute_name("stock") %></th>
+    <th scope="col"><%= sort_link @search, :stock_code, Trading.human_attribute_name("stock"), class: "text-black" %></th>
     <th scope="col"><%= Trading.human_attribute_name("value") %></th>
     <th scope="col"><%= Trading.human_attribute_name("amount") %></th>
     <th scope="col" colspan="3">#</th>

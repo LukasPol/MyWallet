@@ -3,7 +3,8 @@ class TradingsController < ApplicationController
 
   # GET /tradings
   def index
-    @tradings = current_user.tradings
+    @search = current_user.tradings.ransack(params[:q])
+    @tradings = @search.result.includes(:stock)
   end
 
   # GET /tradings/1
