@@ -27,6 +27,7 @@ pt-BR:
     wallet: 'Minha carteira'
     logout: 'Sair'
     login: 'Entrar'
+    signup: 'Cadastrar-se'
 
   date:
     abbr_day_names:
