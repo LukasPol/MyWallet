@@ -238,6 +238,9 @@ GEM
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
+    ruby_http_client (3.5.5)
+    sendgrid-ruby (6.6.2)
+      ruby_http_client (~> 3.4)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
     simple_command (0.1.0)
@@ -303,6 +306,7 @@ DEPENDENCIES
   rubocop (~> 1.23.0)
   rubocop-rails (~> 2.12.4)
   rubocop-rspec
+  sendgrid-ruby (~> 6.6.2)
   shoulda-matchers (~> 5.1.0)
   simple_command (~> 0.1.0)
   simple_form (~> 5.1.0)
