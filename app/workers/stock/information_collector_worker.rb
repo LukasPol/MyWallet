@@ -6,7 +6,7 @@ class Stock
     sidekiq_options queue: :instant_messages, retry: 4
 
     def perform
-      if stocks_exchange_closed?
+      if Time.zone.now.on_weekend? || stocks_exchange_closed?
         Rails.logger.info('Stock Exchange Closed')
         return
       end
