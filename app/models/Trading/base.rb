@@ -4,7 +4,7 @@ class Trading
 
     def initialize(params, trading = nil)
       @trading = trading
-      @date = "#{params["date(1i)"]}-#{params["date(2i)"]}-#{params["date(3i)"]}"
+      @date = "#{params['date(1i)']}-#{params['date(2i)']}-#{params['date(3i)']}"
       @value = params[:value]
       @amount = params[:amount]
       @kind = params[:kind]
