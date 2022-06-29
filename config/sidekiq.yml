@@ -22,5 +22,5 @@
 
 :schedule:
   get_value_stock_online:
-    every: 30m
+    cron: '/30 9-18 * * 1-5 America/Sao_Paulo'
     class: Stock::InformationCollectorWorker
