@@ -14,6 +14,8 @@ class Stock
     end
 
     def call
+      return if template.nil?
+
       set_price
 
       set_company_name_and_document if stock.company_name.nil? || stock.document.nil?
@@ -25,6 +27,9 @@ class Stock
 
     def parsed_template
       Nokogiri::HTML(URI.open("https://statusinvest.com.br/acoes/#{code}"), nil, Encoding::UTF_8.to_s)
+    rescue OpenURI::HTTPError
+      Rails.logger.error "Problems with the Stock #{code}"
+      nil
     end
 
     def set_price
