@@ -28,6 +28,7 @@ class Stock
     def parsed_template
       Nokogiri::HTML(URI.open("https://statusinvest.com.br/acoes/#{code}"), nil, Encoding::UTF_8.to_s)
     rescue OpenURI::HTTPError
+      stock.update(has_problem: true)
       Rails.logger.error "Problems with the Stock #{code}"
       nil
     end

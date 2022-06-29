@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_145439) do
     t.datetime "updated_at", null: false
     t.string "company_name"
     t.string "document"
+    t.boolean "has_problem", default: false
   end
 
   create_table "tradings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
