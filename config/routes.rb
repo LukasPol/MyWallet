@@ -1,4 +1,8 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
+
   unauthenticated :user do
     root to: 'home#index', as: :unauthenticated_user_root
   end
