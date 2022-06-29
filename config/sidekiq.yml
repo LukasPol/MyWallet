@@ -1,0 +1,4 @@
+:schedule:
+  get_value_stock_online:
+    every: 30m
+    class: Stock::InformationCollectorWorker
