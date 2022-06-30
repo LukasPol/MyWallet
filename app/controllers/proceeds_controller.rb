@@ -2,20 +2,27 @@ class ProceedsController < ApplicationController
   before_action :set_proceed, only: %i[show edit update destroy]
 
   def index
+    authorize Trading, :index?
     @search = current_user.proceeds.ransack(params[:q])
     @proceeds = @search.result.includes(:stock)
   end
 
-  def show; end
+  def show
+    authorize @proceed, :show?
+  end
 
   def new
+    authorize Trading, :new?
     @proceed = Proceed.new
   end
 
-  def edit; end
+  def edit
+    authorize @proceed, :edit?
+  end
 
   def create
     @proceed = Proceed.new(proceed_params)
+    authorize @proceed, :create?
 
     if @proceed.save
       redirect_to proceeds_url, notice: t(:created_f, model: t(:proceed, scope: 'activerecord.models'))
@@ -25,6 +32,7 @@ class ProceedsController < ApplicationController
   end
 
   def update
+    authorize @proceed, :update?
     if @proceed.update(proceed_params)
       redirect_to proceeds_url, notice: t(:updated_f, model: t(:proceed, scope: 'activerecord.models'))
     else
@@ -33,6 +41,7 @@ class ProceedsController < ApplicationController
   end
 
   def destroy
+    authorize @proceed, :destroy?
     @proceed.destroy
     redirect_to proceeds_url, notice: t(:deleted_f, model: t(:proceed, scope: 'activerecord.models'))
   end
