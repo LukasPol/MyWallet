@@ -1,0 +1,10 @@
+<h1><%= t(:editing_model ,model: t(:proceed, scope: 'activerecord.models')) %></h1>
+
+<%= render "form", proceed: @proceed %>
+
+<br>
+
+<div>
+  <%# link_to "Show this proceed", @proceed %>
+  <%= link_to t(:back), proceeds_path %>
+</div>

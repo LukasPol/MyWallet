@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @proceed %>
+
+<div>
+  <%= link_to "Edit this proceed", edit_proceed_path(@proceed) %> |
+  <%= link_to "Back to proceeds", proceeds_path %>
+
+  <%= button_to "Destroy this proceed", @proceed, method: :delete, class: 'btn btn-danger' %>
+</div>
