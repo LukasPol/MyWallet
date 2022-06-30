@@ -4,7 +4,7 @@ class Stock < ApplicationRecord
   validates :code, presence: true
   validates :code, length: { in: 5..6 }
 
-  default_scope { where(has_problem: false) }
+  scope :without_problem, -> { where(has_problem: false) }
 
   def to_s
     code
