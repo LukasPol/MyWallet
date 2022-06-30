@@ -1,17 +1,29 @@
 pt-BR:
   activerecord:
     models:
+        proceed: 'Proventos'
         user: 'Usuário'
         wallet: 'Carteira'
         trading: 'Movimentação'
         trading_pluralize: 'Movimentações'
         stock: 'Ação'
     attributes:
+      proceed:
+        amount: 'Quantidade'
+        date: 'Data'
+        kind: 'Tipo'
+        stock: 'Ticket'
+        stock_id: 'Ticket'
+        user: 'Usuário'
+        value: 'Valor'
+        kind_enum:
+          dividends: 'Dividendos'
+          jcp: 'JCP'
       wallet:
         name: 'Nome'
         user: 'Usuário'
       trading:
-        value: 'Valor'
+        price: 'Valor'
         date: 'Data'
         amount: 'Quantidade'
         kind: 'Tipo de movimentação'
@@ -27,6 +39,25 @@ pt-BR:
         name: 'Nome'
     errors:
       models:
+        proceed:
+          attributes:
+            date:
+              after_today: 'não pode ser futuro'
+              blank: 'é obrigatória'
+            value:
+              blank: 'é obrigatório'
+              not_a_number: 'deve ser número'
+            amount:
+              blank: 'é obrigatória'
+            user:
+              required: 'é obrigatório'
+              blank: 'não pode ser vazio'
+            stock:
+              required: 'é obrigatório'
+              blank: 'não pode ser vazia'
+            wallet:
+              required: 'é obrigatório'
+              blank: 'não pode ser vazia'
         wallet:
           attributes:
             name:
