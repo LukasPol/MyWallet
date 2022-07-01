@@ -14,7 +14,7 @@ class Stock
       Rails.logger.info('Stock::InformationCollectorWorker')
 
       Stock.without_problem.each do |stock|
-        Rails.logger.info("=== Get information: #{stock} ===")
+        Rails.logger.info("=== Get information: #{stock.code} ===")
         Stock::InformationCollector.call(stock)
         sleep rand(5..10)
       end
