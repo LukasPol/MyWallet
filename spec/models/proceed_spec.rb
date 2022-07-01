@@ -11,6 +11,10 @@ RSpec.describe Proceed, type: :model do
       it { should validate_presence_of(:stock) }
     end
 
+    context 'validate numericality' do
+      it { should validate_numericality_of(:value).is_greater_than(0) }
+    end
+
     context 'date should to be before Today' do
       it 'save successful' do
         trading = build(:trading, date: Date.yesterday)
