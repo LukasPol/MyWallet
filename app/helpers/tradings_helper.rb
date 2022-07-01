@@ -1,5 +1,11 @@
 module TradingsHelper
-  def kind_enum
+  def trading_kind_enum_search
+    Trading.kinds.map do |key, value|
+      [locale_kind(key), value]
+    end
+  end
+
+  def trading_kind_enum_form
     Trading.kinds.keys.map do |k|
       [locale_kind(k), k]
     end

@@ -6,8 +6,8 @@
     <%= f.input :date, as: :date, order: [:day, :month, :year], end_year: Date.today.year %>
     <%= f.input :value, as: :float %>
     <%= f.input :amount, as: :integer %>
-    <%= f.input :kind, as: :select, collection: proceed_kind_enum, selected: 0 %>
-    <%= f.input :stock_id, as: :select, collection: my_stocks, selected: my_stocks.first %>
+    <%= f.input :kind, as: :select, collection: proceed_kind_enum_form, selected: 0 %>
+    <%= f.input :stock_id, as: :select, collection: current_user.my_stocks, selected: current_user.my_stocks.first %>
   </div>
 
   <div class="form-actions mt-3">
