@@ -3,11 +3,13 @@ require 'rails_helper'
 RSpec.describe '/proceeds', type: :request do
   let!(:user) { create(:user) }
   let(:wallet) { user.wallets.first }
+  let(:stock) { create(:stock) }
 
   before { sign_in(user) }
 
   let(:valid_attributes) do
     attributes_for(:proceed, user: user, wallet: wallet)
+      .merge!(stock_id: stock.id)
   end
 
   let(:invalid_attributes) do
@@ -50,13 +52,13 @@ RSpec.describe '/proceeds', type: :request do
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      xit 'creates a new Proceed' do
+      it 'creates a new Proceed' do
         expect do
           post proceeds_url, params: { proceed: valid_attributes }
         end.to change(Proceed, :count).by(1)
       end
 
-      xit 'redirects to the created proceed' do
+      it 'redirects to the created proceed' do
         post proceeds_url, params: { proceed: valid_attributes }
         expect(response).to redirect_to(proceeds_url)
       end
@@ -69,9 +71,9 @@ RSpec.describe '/proceeds', type: :request do
         end.to change(Proceed, :count).by(0)
       end
 
-      xit "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders a successful response (i.e. to display the 'new' template)" do
         post proceeds_url, params: { proceed: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to be_unprocessable
       end
     end
   end
@@ -98,10 +100,10 @@ RSpec.describe '/proceeds', type: :request do
     end
 
     context 'with invalid parameters' do
-      xit "renders a successful response (i.e. to display the 'edit' template)" do
+      it "renders a successful response (i.e. to display the 'edit' template)" do
         proceed = Proceed.create! valid_attributes
         patch proceed_url(proceed), params: { proceed: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to be_unprocessable
       end
     end
   end
