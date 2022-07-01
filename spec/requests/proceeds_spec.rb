@@ -33,6 +33,22 @@ RSpec.describe '/proceeds', type: :request do
       get proceed_url(proceed)
       expect(response).to be_successful
     end
+
+    context 'try to see another user proceeds' do
+      before :each do
+        user2 = create(:user)
+        proceed2 = create(:proceed, user: user2)
+        get proceed_url(proceed2)
+      end
+
+      it 'should return the flash message error' do
+        expect(flash[:error]).to eq('Acesso Negado')
+      end
+
+      it 'render unauthorized response' do
+        expect(response).to be_unauthorized
+      end
+    end
   end
 
   describe 'GET /new' do
