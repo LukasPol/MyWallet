@@ -23,17 +23,17 @@ pt-BR:
         name: 'Nome'
         user: 'Usuário'
       trading:
-        price: 'Valor'
+        value: 'Valor'
         date: 'Data'
         amount: 'Quantidade'
-        kind: 'Tipo de movimentação'
+        kind: 'C/V'
         kind_enum:
           buy: 'Compra'
           hold: 'Venda'
         wallet: 'Carteira'
         user: 'Usuário'
-        stock: 'Código da ação'
-        stock_code: 'Código da ação'
+        stock: 'Ticket'
+        stock_code: 'Ticket'
       stock:
         code: 'Código'
         name: 'Nome'
