@@ -2,7 +2,7 @@ class ProceedsController < ApplicationController
   before_action :set_proceed, only: %i[show edit update destroy]
 
   def index
-    authorize Trading, :index?
+    authorize Proceed, :index?
     @search = current_user.proceeds.ransack(params[:q])
     @proceeds = @search.result.includes(:stock)
   end
@@ -12,7 +12,7 @@ class ProceedsController < ApplicationController
   end
 
   def new
-    authorize Trading, :new?
+    authorize Proceed, :new?
     @proceed = Proceed.new
   end
 
