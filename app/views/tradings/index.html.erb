@@ -36,7 +36,7 @@
         <th><%= trading.stock.code %></th>
         <th><%= number_to_currency(trading.value) %></th>
         <th><%= trading.amount %></th>
-        <th><%= locale_kind(trading.kind) %></th>
+        <th><%= trading_locale_kind(trading.kind) %></th>
         <th><%= l(trading.date) %></th>
 <!--        <th>-->
           <%#= link_to trading do %>
