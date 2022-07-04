@@ -1,0 +1,59 @@
+<div class="d-flex align-items-center justify-content-between pe-4">
+  <h1><%= t(:proceed, scope: 'activerecord.models').pluralize %></h1>
+  <%= link_to t(:create_model ,model: t(:proceed, scope: 'activerecord.models')), new_proceed_path, class: 'btn btn-primary px-3 py-2' %>
+</div>
+
+<%= search_form_for @search do |f| %>
+  <div class="row mt-2 mb-3">
+    <div class="col">
+      <%= f.select :kind_eq, proceed_kind_enum_search, { include_blank: Proceed.human_attribute_name("kind") }, { class: 'form-select' } %>
+    </div>
+
+    <div class="col">
+      <%= f.search_field :stock_code_cont, class: 'form-control', placeholder: Proceed.human_attribute_name("stock") %>
+    </div>
+
+    <div class="col">
+      <%= f.submit class: 'btn btn-info' %>
+    </div>
+  </div>
+<% end %>
+
+<table class="table table-responsive table-striped table-hover" id="proceeds">
+  <thead>
+    <tr>
+      <th scope="col"><%= sort_link @search, :stock_code, Proceed.human_attribute_name("stock"), class: "text-black" %></th>
+      <th scope="col"><%= Proceed.human_attribute_name("value") %></th>
+      <th scope="col"><%= Proceed.human_attribute_name("amount") %></th>
+      <th scope="col"><%= sort_link @search, :kind, Proceed.human_attribute_name("kind"), class: "text-black" %></th>
+      <th scope="col"><%= Proceed.human_attribute_name("date") %></th>
+      <th scope="col" colspan="3">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @proceeds.each do |proceed| %>
+      <tr>
+        <th><%= proceed.stock.code %></th>
+        <th><%= number_to_currency(proceed.value) %></th>
+        <th><%= proceed.amount %></th>
+        <th><%= proceed_locale_kind(proceed.kind) %></th>
+        <th><%= l(proceed.date) %></th>
+        <!--        <th>-->
+        <%#= link_to proceed do %>
+        <!--            <i class="bi bi-eye"></i>-->
+        <%# end %>
+        <!--        </th>-->
+        <th>
+          <%= link_to edit_proceed_path(proceed) do %>
+            <i class="bi bi-pencil-square"></i>
+          <% end %>
+        </th>
+        <th>
+          <%= link_to proceed_path(proceed.id),data: {"turbo-method": :delete, "turbo-confirm": t(:are_you_sure)}, title: t(:destroy) do %>
+            <i class="bi bi-trash"></i>
+          <% end %>
+        </th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

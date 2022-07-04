@@ -6,7 +6,7 @@
 <%= search_form_for @search do |f| %>
   <div class="row mt-2 mb-3">
     <div class="col">
-      <%= f.select :kind_eq, kind_enum, { include_blank: Trading.human_attribute_name("kind") }, {class: 'form-select'} %>
+      <%= f.select :kind_eq, trading_kind_enum_search, { include_blank: Trading.human_attribute_name("kind") }, {class: 'form-select'} %>
     </div>
 
     <div class="col">

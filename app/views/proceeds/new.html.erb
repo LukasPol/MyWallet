@@ -1,0 +1,9 @@
+<h1><%= t(:create_model ,model: t(:proceed, scope: 'activerecord.models')) %></h1>
+
+<%= render "form", proceed: @proceed %>
+
+<br>
+
+<div>
+  <%= link_to t(:back), proceeds_path %>
+</div>

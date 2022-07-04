@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized(_exception)
     flash[:error] = I18n.t(:access_denied, scope: 'errors.messages')
-    redirect_back fallback_location: '/'
+    redirect_back fallback_location: '/', status: 401
   end
 end

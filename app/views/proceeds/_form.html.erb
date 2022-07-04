@@ -1,5 +1,4 @@
-
-<%= simple_form_for(@trading) do |f| %>
+<%= simple_form_for(@proceed) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -7,8 +6,8 @@
     <%= f.input :date, as: :date, order: [:day, :month, :year], end_year: Date.today.year %>
     <%= f.input :value, as: :float %>
     <%= f.input :amount, as: :integer %>
-    <%= f.input :kind, as: :select, collection: trading_kind_enum_form, selected: 0 %>
-    <%= f.input :stock, input_html: {value: action_name === 'edit' ? @trading.stock.code : '' } %>
+    <%= f.input :kind, as: :select, collection: proceed_kind_enum_form, selected: 0 %>
+    <%= f.input :stock_id, as: :select, collection: current_user.my_stocks, selected: current_user.my_stocks.first %>
   </div>
 
   <div class="form-actions mt-3">

@@ -17,4 +17,5 @@ Rails.application.routes.draw do
 
   resources :tradings
   resources :wallets, only: [:index]
+  resources :proceeds
 end

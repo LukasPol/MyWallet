@@ -23,6 +23,7 @@ pt-BR:
   show: "Visualizar"
 
   navbar:
+    proceeds: 'Proventos'
     tradings: "Movimentações"
     wallet: 'Minha carteira'
     logout: 'Sair'

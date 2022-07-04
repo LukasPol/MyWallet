@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :wallets, dependent: :delete_all
   has_many :tradings, dependent: :delete_all
+  has_many :proceeds, dependent: :delete_all
+  has_many :stocks, through: :tradings
 
   validates :email, :password, :password_confirmation, presence: true
 
@@ -15,5 +17,11 @@ class User < ApplicationRecord
 
   def main_wallet
     wallets.first
+  end
+
+  def my_stocks
+    stocks.without_problem.map do |s|
+      [s.code, s.id]
+    end.uniq
   end
 end
