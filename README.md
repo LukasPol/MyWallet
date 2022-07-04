@@ -1,24 +1,19 @@
-# README
+# MyWallet
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Web](https://minhacarteiraon.herokuapp.com)
 
-Things you may want to cover:
+Minha Carteira é um app para acamponhar suas ações e proventos.
 
-* Ruby version
+### Funcionalidades:
 
-* System dependencies
+- Cadastrar Movimentações das ações;
+- Cadastrar Divendendos;
+- Ver seus preços médios;
+- ~~Pegar altomaticamente os dividendos que irá o usuário receber;~~
+- ~~Valores da ação atualizado a cada 20 minutos; (já tem, só falta liberar a funcionalidade)~~
+- ~~Importar o Extrato do site B3;~~
+- ~~Exportar para preencher o IR;~~
 
-* Configuration
+Deseja uma nova funcionalidade, que não estaje listada?
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Abra uma [issue](https://github.com/LukasPol/MyWallet/issues/new)
