@@ -35,5 +35,7 @@ class WalletsController < ApplicationController
     amount_total = tradings.sum(&:amount)
 
     price / amount_total
+  rescue ZeroDivisionError
+    0
   end
 end

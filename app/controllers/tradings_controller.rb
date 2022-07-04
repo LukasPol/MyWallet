@@ -26,12 +26,10 @@ class TradingsController < ApplicationController
 
   # POST /tradings
   def create
-    creator = Trading::Creator.call(trading_params)
-    @trading = creator.result
+    @trading = Trading.new(trading_params)
     authorize @trading, :create?
 
-    if creator.success?
-      @trading.save
+    if @trading.save
       redirect_to tradings_url, notice: t(:created_f, model: t(:trading, scope: 'activerecord.models'))
     else
       render :new, status: :unprocessable_entity
@@ -40,11 +38,9 @@ class TradingsController < ApplicationController
 
   # PATCH/PUT /tradings/1
   def update
-    creator = Trading::Updater.call(trading_params, @trading)
-    @trading = creator.result
     authorize @trading, :update?
 
-    if creator.success?
+    if @trading.update(trading_params)
       redirect_to tradings_url, notice: t(:updated_f, model: t(:trading, scope: 'activerecord.models'))
     else
       render :edit, status: :unprocessable_entity
@@ -70,7 +66,19 @@ class TradingsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def trading_params
     params.require(:trading)
-          .permit(:date, :value, :amount, :kind, :stock)
-          .merge(user: current_user, wallet: current_user.main_wallet)
+          .permit(:date, :value, :amount, :kind)
+          .merge(user: current_user,
+                 wallet: current_user.main_wallet,
+                 stock: set_stock)
+  end
+
+  def set_stock
+    if action_name == 'create' && params[:trading][:stock]
+      Stock.find_or_create_by(code: params[:trading][:stock])
+    elsif action_name == 'update' && !params[:trading][:stock]
+      @trading.stock
+    elsif action_name == 'update' && params[:trading][:stock]
+      Stock.find_or_create_by(code: params[:trading][:stock])
+    end
   end
 end
