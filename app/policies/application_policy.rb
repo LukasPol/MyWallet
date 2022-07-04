@@ -11,7 +11,7 @@ class ApplicationPolicy
   end
 
   def show?
-    false
+    @user == @record.user
   end
 
   def create?
@@ -19,19 +19,19 @@ class ApplicationPolicy
   end
 
   def new?
-    create?
-  end
-
-  def update?
-    false
+    true
   end
 
   def edit?
-    update?
+    @user == @record.user
+  end
+
+  def update?
+    @user == @record.user
   end
 
   def destroy?
-    false
+    @user == @record.user
   end
 
   class Scope

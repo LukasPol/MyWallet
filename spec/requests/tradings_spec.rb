@@ -3,11 +3,14 @@ require 'rails_helper'
 RSpec.describe '/tradings', type: :request do
   let!(:user) { create(:user) }
   let(:wallet) { user.wallets.first }
+  let(:stock) { create(:stock) }
+  let(:trading) { create(:trading, user: user) }
 
   before { sign_in(user) }
 
   let(:valid_attributes) do
     attributes_for(:trading, user: user, wallet: wallet)
+      .merge!(stock: stock.code)
   end
 
   let(:invalid_attributes) do
@@ -19,7 +22,6 @@ RSpec.describe '/tradings', type: :request do
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      Trading.create! valid_attributes
       get tradings_url
       expect(response).to be_successful
     end
@@ -27,9 +29,24 @@ RSpec.describe '/tradings', type: :request do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      trading = Trading.create! valid_attributes
       get trading_url(trading)
       expect(response).to be_successful
+    end
+
+    context 'try to see another user proceeds' do
+      before :each do
+        user2 = create(:user)
+        trading2 = create(:trading, user: user2)
+        get trading_url(trading2)
+      end
+
+      it 'should return the flash message error' do
+        expect(flash[:error]).to eq('Acesso Negado')
+      end
+
+      it 'render unauthorized response' do
+        expect(response).to be_unauthorized
+      end
     end
   end
 
@@ -42,7 +59,6 @@ RSpec.describe '/tradings', type: :request do
 
   describe 'GET /edit' do
     it 'renders a successful response' do
-      trading = Trading.create! valid_attributes
       get edit_trading_url(trading)
       expect(response).to be_successful
     end
@@ -50,28 +66,28 @@ RSpec.describe '/tradings', type: :request do
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      xit 'creates a new Trading' do
+      it 'creates a new Trading' do
         expect do
           post tradings_url, params: { trading: valid_attributes }
         end.to change(Trading, :count).by(1)
       end
 
-      xit 'redirects to the created trading' do
+      it 'redirects to the created trading' do
         post tradings_url, params: { trading: valid_attributes }
         expect(response).to redirect_to(tradings_url)
       end
     end
 
     context 'with invalid parameters' do
-      xit 'does not create a new Trading' do
+      it 'does not create a new Trading' do
         expect do
           post tradings_url, params: { trading: invalid_attributes }
         end.to change(Trading, :count).by(0)
       end
 
-      xit "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders a successful response (i.e. to display the 'new' template)" do
         post tradings_url, params: { trading: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to be_unprocessable
       end
     end
   end
@@ -79,43 +95,42 @@ RSpec.describe '/tradings', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { value: 5.99 }
       end
 
-      xit 'updates the requested trading' do
-        trading = Trading.create! valid_attributes
+      it 'updates the requested trading' do
         patch trading_url(trading), params: { trading: new_attributes }
         trading.reload
-        skip('Add assertions for updated state')
+        expect(trading.value).to eq(5.99)
       end
 
-      xit 'redirects to the trading' do
-        trading = Trading.create! valid_attributes
+      it 'redirects to the trading' do
         patch trading_url(trading), params: { trading: new_attributes }
-        trading.reload
-        expect(response).to redirect_to(trading_url(trading))
+        expect(response).to redirect_to(tradings_url)
+      end
+
+      it 'updates stock' do
+        patch trading_url(trading), params: { trading: { stock: stock.code } }
+        expect(trading.reload.stock.code).to eq(stock.code)
       end
     end
 
     context 'with invalid parameters' do
-      xit "renders a successful response (i.e. to display the 'edit' template)" do
-        trading = Trading.create! valid_attributes
+      it "renders a successful response (i.e. to display the 'edit' template)" do
         patch trading_url(trading), params: { trading: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to be_unprocessable
       end
     end
   end
 
   describe 'DELETE /destroy' do
     it 'destroys the requested trading' do
-      trading = Trading.create! valid_attributes
       expect do
         delete trading_url(trading)
-      end.to change(Trading, :count).by(-1)
+      end.to change(Trading, :count).by(0)
     end
 
     it 'redirects to the tradings list' do
-      trading = Trading.create! valid_attributes
       delete trading_url(trading)
       expect(response).to redirect_to(tradings_url)
     end
