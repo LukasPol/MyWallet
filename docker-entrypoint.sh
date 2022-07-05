@@ -12,7 +12,7 @@ yarn install
 rails db:create
 rails db:migrate
 
-rails assets:precompile
+#rails assets:precompile
 
 ./bin/dev
 
