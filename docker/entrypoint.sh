@@ -12,13 +12,11 @@ yarn install
 rails db:create
 rails db:migrate
 
-#rails assets:precompile
-
-./bin/dev
+#./bin/dev
 
 #rails s
 
-# foreman start
+foreman start -f Procfile.dev
 
 #bundle exec puma -t 5:5 -e ${RACK_ENV:-development} -p 3000
 

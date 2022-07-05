@@ -12,25 +12,25 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 
 RUN mkdir /app
 WORKDIR /app
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+COPY ../Gemfile /app/Gemfile
+COPY ../Gemfile.lock /app/Gemfile.lock
 
 ##
 RUN gem install bundler:2.3.11
 RUN bundle install
 
-COPY package.json yarn.lock ./
+COPY ../package.json yarn.lock ./
 
 RUN yarn install
 
 # RUN gem install mailcatcher
+RUN gem install foreman
 
-COPY . /app
+COPY .. /app
 
-COPY docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
+COPY docker/entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
-#CMD ["docker-entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 3000
