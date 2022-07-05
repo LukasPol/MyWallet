@@ -14,5 +14,19 @@ services:
     ports:
       - "6379:6379"
 
+  app:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    env_file: .env
+#    command: bash -c "rm -f tmp/pids/server.pid && sleep 100000"
+    command: docker-entrypoint.sh
+    stdin_open: true
+    tty: true
+
 volumes:
   postgres:
