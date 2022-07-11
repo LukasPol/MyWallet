@@ -38,5 +38,9 @@
 .env
 
 .idea/
+.vscode/
 
 coverage/
+
+/vendor/*
+!/vendor/.keep
