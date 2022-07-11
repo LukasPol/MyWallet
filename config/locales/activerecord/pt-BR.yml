@@ -1,13 +1,20 @@
 pt-BR:
   activerecord:
     models:
-        proceed: 'Proventos'
+      asset: 'Ativo'
+      proceed: 'Provento'
+      user: 'Usuário'
+      wallet: 'Carteira'
+      trading: 'Movimentação'
+      trading_pluralize: 'Movimentações'
+      stock: 'Ação'
+    attributes:
+      asset:
+        amount: 'Cotas'
+        average_price: 'Preço Médio'
+        stock: 'ticker'
         user: 'Usuário'
         wallet: 'Carteira'
-        trading: 'Movimentação'
-        trading_pluralize: 'Movimentações'
-        stock: 'Ação'
-    attributes:
       proceed:
         amount: 'Quantidade'
         date: 'Data'

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_30_184631) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_11_194512) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "assets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "amount", default: 0
+    t.float "average_price", default: 0.0
+    t.uuid "stock_id", null: false
+    t.uuid "user_id", null: false
+    t.uuid "wallet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_id"], name: "index_assets_on_stock_id"
+    t.index ["user_id"], name: "index_assets_on_user_id"
+    t.index ["wallet_id"], name: "index_assets_on_wallet_id"
+  end
 
   create_table "proceeds", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "date", null: false
@@ -77,6 +90,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_184631) do
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
+  add_foreign_key "assets", "stocks"
+  add_foreign_key "assets", "users"
+  add_foreign_key "assets", "wallets"
   add_foreign_key "proceeds", "stocks"
   add_foreign_key "proceeds", "users"
   add_foreign_key "proceeds", "wallets"
