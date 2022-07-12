@@ -30,17 +30,18 @@ pt-BR:
         name: 'Nome'
         user: 'Usuário'
       trading:
-        value: 'Valor'
+        amount: 'Cotas'
         date: 'Data'
-        amount: 'Quantidade'
         kind: 'C/V'
+        stock: 'Ticker'
+        stock_code: 'Ticker'
+        total_value: 'Total R$'
+        user: 'Usuário'
+        value: 'Valor'
+        wallet: 'Carteira'
         kind_enum:
           buy: 'Compra'
           hold: 'Venda'
-        wallet: 'Carteira'
-        user: 'Usuário'
-        stock: 'Ticket'
-        stock_code: 'Ticket'
       stock:
         code: 'Código'
         name: 'Nome'
@@ -71,20 +72,23 @@ pt-BR:
               taken: 'já cadastrado'
         trading:
           attributes:
+            amount:
+              blank: 'é obrigatória'
             date:
               after_today: 'não pode ser futuro'
               blank: 'é obrigatória'
-            value:
-              blank: 'é obrigatório'
-              not_a_number: 'deve ser número'
-            amount:
-              blank: 'é obrigatória'
-            user:
-              required: 'é obrigatório'
-              blank: 'não pode ser vazio'
             stock:
               required: 'é obrigatório'
               blank: 'não pode ser vazia'
+            total_value:
+              blank: 'é obrigatório'
+              not_a_number: 'deve ser número'
+            user:
+              required: 'é obrigatório'
+              blank: 'não pode ser vazio'
+            value:
+              blank: 'é obrigatório'
+              not_a_number: 'deve ser número'
             wallet:
               required: 'é obrigatório'
               blank: 'não pode ser vazia'

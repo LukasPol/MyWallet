@@ -66,7 +66,7 @@ class TradingsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def trading_params
     params.require(:trading)
-          .permit(:date, :value, :amount, :kind)
+          .permit(:date, :value, :total_value, :amount, :kind)
           .merge(user: current_user,
                  wallet: current_user.main_wallet,
                  stock: set_stock)
