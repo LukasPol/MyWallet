@@ -5,11 +5,18 @@ RSpec.describe Trading, type: :model do
   describe 'validates' do
     context 'presence' do
       it { should validate_presence_of(:value) }
+      it { should validate_presence_of(:total_value) }
       it { should validate_presence_of(:amount) }
       it { should validate_presence_of(:kind) }
       it { should validate_presence_of(:user) }
       it { should validate_presence_of(:wallet) }
       it { should validate_presence_of(:stock) }
+    end
+
+    context 'validate numericality' do
+      it { should validate_numericality_of(:value).is_greater_than(0) }
+      it { should validate_numericality_of(:amount).is_greater_than(0) }
+      it { should validate_numericality_of(:total_value).is_greater_than(0) }
     end
 
     context 'date should to be before Today' do
