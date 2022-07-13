@@ -34,7 +34,7 @@ class Asset
       asset.amount += trading.amount
       asset.total_invested += trading.total_value
 
-      asset.average_price = asset.total_invested / asset.amount
+      asset.average_price = (asset.total_invested / asset.amount).round(2)
     end
 
     def calculate_hold
@@ -44,7 +44,7 @@ class Asset
         asset.average_price = 0
         asset.total_invested = 0
       else
-        asset.total_invested = asset.average_price * asset.amount
+        asset.total_invested = (asset.average_price * asset.amount).round(2)
       end
     end
   end
