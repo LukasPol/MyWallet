@@ -24,7 +24,7 @@ RSpec.describe Asset::Updater do
         end
 
         it 'average_price should be correct' do
-          expect(trading.asset.average_price).to eq(trading.total_value / trading.amount)
+          expect(trading.asset.average_price).to eq((trading.total_value / trading.amount).round(2))
         end
       end
 
@@ -47,7 +47,7 @@ RSpec.describe Asset::Updater do
         end
 
         it 'average_price should be correct' do
-          expect(asset.average_price).to eq(tradings.sum(&:total_value) / tradings.sum(&:amount))
+          expect(asset.average_price).to eq((tradings.sum(&:total_value) / tradings.sum(&:amount)).round(2))
         end
       end
     end
@@ -83,7 +83,7 @@ RSpec.describe Asset::Updater do
         end
 
         it 'asset.total_invested should to be equal trading.total_value' do
-          expect(asset.total_invested).to eq(0.15 * 5)
+          expect(asset.total_invested).to eq((0.15 * 5).round(2))
         end
 
         it 'average_price should be correct' do
