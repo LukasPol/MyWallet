@@ -6,6 +6,7 @@
   <div class="form-inputs">
     <%= f.input :date, as: :date, order: [:day, :month, :year], end_year: Date.today.year %>
     <%= f.input :value, as: :float %>
+    <%= f.input :total_value, as: :float %>
     <%= f.input :amount, as: :integer %>
     <%= f.input :kind, as: :select, collection: trading_kind_enum_form, selected: 0 %>
     <%= f.input :stock, input_html: {value: action_name === 'edit' ? @trading.stock.code : '' } %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_11_194512) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_11_210031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -64,6 +64,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_194512) do
     t.uuid "wallet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "total_value"
+    t.uuid "asset_id", null: false
+    t.index ["asset_id"], name: "index_tradings_on_asset_id"
     t.index ["stock_id"], name: "index_tradings_on_stock_id"
     t.index ["user_id"], name: "index_tradings_on_user_id"
     t.index ["wallet_id"], name: "index_tradings_on_wallet_id"
@@ -96,6 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_194512) do
   add_foreign_key "proceeds", "stocks"
   add_foreign_key "proceeds", "users"
   add_foreign_key "proceeds", "wallets"
+  add_foreign_key "tradings", "assets"
   add_foreign_key "tradings", "stocks"
   add_foreign_key "tradings", "users"
   add_foreign_key "tradings", "wallets"
