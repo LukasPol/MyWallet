@@ -69,7 +69,7 @@ class TradingsController < ApplicationController
           .permit(:date, :value, :total_value, :amount, :kind)
           .merge(user: current_user,
                  wallet: current_user.main_wallet,
-                 stock: set_stock)
+                 stock: set_stock, asset: set_asset)
   end
 
   def set_stock
@@ -80,5 +80,9 @@ class TradingsController < ApplicationController
     elsif action_name == 'update' && params[:trading][:stock]
       Stock.find_or_create_by(code: params[:trading][:stock])
     end
+  end
+
+  def set_asset
+    Asset.find_or_create_by(stock: set_stock, user: current_user, wallet: current_user.main_wallet)
   end
 end
