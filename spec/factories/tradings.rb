@@ -8,6 +8,6 @@ FactoryBot.define do
     user { create(:user) }
     wallet { user.main_wallet }
     stock { create(:stock) }
-    asset { create(:asset, user: user, wallet: wallet, stock: stock) }
+    asset { build(:asset, user: user, wallet: wallet, stock: stock) }
   end
 end

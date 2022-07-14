@@ -13,8 +13,7 @@ class Trading < ApplicationRecord
     errors.add(:date, I18n.t(:after_today, scope: 'activerecord.errors.models.trading.attributes.date')) if date && date > Time.zone.today
   end
 
-  before_validation do
-    asset = Asset.find_or_create_by(stock: stock, user: user, wallet: wallet)
-    self.asset = asset
+  before_create do
+    Asset::Updater.call(self)
   end
 end
