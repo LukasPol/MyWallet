@@ -57,13 +57,6 @@ RSpec.describe '/tradings', type: :request do
     end
   end
 
-  describe 'GET /edit' do
-    it 'renders a successful response' do
-      get edit_trading_url(trading)
-      expect(response).to be_successful
-    end
-  end
-
   describe 'POST /create' do
     context 'with valid parameters' do
       it 'creates a new Trading' do
@@ -87,37 +80,6 @@ RSpec.describe '/tradings', type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post tradings_url, params: { trading: invalid_attributes }
-        expect(response).to be_unprocessable
-      end
-    end
-  end
-
-  describe 'PATCH /update' do
-    context 'with valid parameters' do
-      let(:new_attributes) do
-        { value: 5.99 }
-      end
-
-      it 'updates the requested trading' do
-        patch trading_url(trading), params: { trading: new_attributes }
-        trading.reload
-        expect(trading.value).to eq(5.99)
-      end
-
-      it 'redirects to the trading' do
-        patch trading_url(trading), params: { trading: new_attributes }
-        expect(response).to redirect_to(tradings_url)
-      end
-
-      it 'updates stock' do
-        patch trading_url(trading), params: { trading: { stock: stock.code } }
-        expect(trading.reload.stock.code).to eq(stock.code)
-      end
-    end
-
-    context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        patch trading_url(trading), params: { trading: invalid_attributes }
         expect(response).to be_unprocessable
       end
     end
