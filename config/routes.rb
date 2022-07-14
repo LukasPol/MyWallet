@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
-  resources :tradings
+  resources :tradings, except: [:edit, :update]
   resources :wallets, only: [:index]
   resources :proceeds
 end

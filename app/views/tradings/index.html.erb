@@ -43,11 +43,11 @@
 <!--            <i class="bi bi-eye"></i>-->
           <%# end %>
 <!--        </th>-->
-        <th>
-          <%= link_to edit_trading_path(trading) do %>
-            <i class="bi bi-pencil-square"></i>
-          <% end %>
-        </th>
+<!--        <th>-->
+          <%#= link_to edit_trading_path(trading) do %>
+<!--            <i class="bi bi-pencil-square"></i>-->
+          <%# end %>
+<!--        </th>-->
         <th>
           <%= link_to trading_path(trading.id),data: {"turbo-method": :delete, "turbo-confirm": t(:are_you_sure)}, title: t(:destroy) do %>
             <i class="bi bi-trash"></i>

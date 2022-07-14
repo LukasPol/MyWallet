@@ -1,5 +1,5 @@
 class TradingsController < ApplicationController
-  before_action :set_trading, only: %i[show edit update destroy]
+  before_action :set_trading, only: %i[show destroy]
 
   # GET /tradings
   def index
@@ -19,11 +19,6 @@ class TradingsController < ApplicationController
     authorize @trading, :new?
   end
 
-  # GET /tradings/1/edit
-  def edit
-    authorize @trading, :edit?
-  end
-
   # POST /tradings
   def create
     @trading = Trading.new(trading_params)
@@ -33,17 +28,6 @@ class TradingsController < ApplicationController
       redirect_to tradings_url, notice: t(:created_f, model: t(:trading, scope: 'activerecord.models'))
     else
       render :new, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /tradings/1
-  def update
-    authorize @trading, :update?
-
-    if @trading.update(trading_params)
-      redirect_to tradings_url, notice: t(:updated_f, model: t(:trading, scope: 'activerecord.models'))
-    else
-      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -73,13 +57,7 @@ class TradingsController < ApplicationController
   end
 
   def set_stock
-    if action_name == 'create' && params[:trading][:stock]
-      Stock.find_or_create_by(code: params[:trading][:stock])
-    elsif action_name == 'update' && !params[:trading][:stock]
-      @trading.stock
-    elsif action_name == 'update' && params[:trading][:stock]
-      Stock.find_or_create_by(code: params[:trading][:stock])
-    end
+    Stock.find_or_create_by(code: params[:trading][:stock]) if action_name == 'create' && params[:trading][:stock]
   end
 
   def set_asset
