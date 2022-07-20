@@ -17,3 +17,7 @@ Minha Carteira é um app para acamponhar suas ações e proventos.
 Deseja uma nova funcionalidade, que não estaje listada?
 
 Abra uma [issue](https://github.com/LukasPol/MyWallet/issues/new)
+
+### Desenvolvimento
+
+(Wiki)[https://github.com/LukasPol/MyWallet/wiki]
